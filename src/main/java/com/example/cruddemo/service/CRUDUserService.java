@@ -27,9 +27,9 @@ public class CRUDUserService {
     @Transactional
     public UserInstanceDto update(UserInstanceDto dto){
         var entityForUpdate = repository.findUserEntityById(dto.id());
-        var updatedEntity = entityForUpdate.setName(dto.name());
-        updatedEntity = repository.save(updatedEntity);
-        return UserInstanceDto.ofEntity(entityForUpdate);
+        entityForUpdate.setName(dto.name());
+        var updatedEntity = repository.save(entityForUpdate);
+        return UserInstanceDto.ofEntity(updatedEntity);
     }
 
     @Transactional
