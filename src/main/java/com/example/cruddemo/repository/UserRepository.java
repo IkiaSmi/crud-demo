@@ -13,7 +13,7 @@ public interface UserRepository extends CrudRepository<UserEntity, Long> {
     @Query(value="SELECT * FROM users ORDER BY id offset :offset limit :limit", nativeQuery = true)
     List<UserEntity> findAllPaged(Integer offset, Integer limit);
 
-    @Query(value="SELECT * FROM users where id :id", nativeQuery = true)
+    @Query(value="SELECT * FROM users where id=:id", nativeQuery = true)
     UserEntity findUserEntityById(long id);
 
 
