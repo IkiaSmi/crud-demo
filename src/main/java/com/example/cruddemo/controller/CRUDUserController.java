@@ -19,7 +19,7 @@ public class CRUDUserController {
         return service.create(dto);
     }
 
-    @GetMapping("/{name}")
+    @PostMapping("/updateName")
     public UserInstanceDto updateUser(@RequestBody UserInstanceDto dto){
         return service.update(dto);
     }
