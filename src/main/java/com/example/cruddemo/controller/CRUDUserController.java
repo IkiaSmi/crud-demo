@@ -1,8 +1,6 @@
 package com.example.cruddemo.controller;
 
-import com.example.cruddemo.dto.PagedListDto;
-import com.example.cruddemo.dto.UserCreateUpdateDto;
-import com.example.cruddemo.dto.UserInstanceDto;
+import com.example.cruddemo.dto.*;
 import com.example.cruddemo.service.CRUDUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,10 +17,13 @@ public class CRUDUserController {
         return service.create(dto);
     }
 
-    @PostMapping("/updateName")
+    @PostMapping("/updateUser")
     public UserInstanceDto updateUser(@RequestBody UserInstanceDto dto){
         return service.update(dto);
     }
+
+    @PostMapping("/delateUser")
+    public StringDto deleteUser(@RequestBody UserIdDto dto){ return service.delete(dto); }
 
     @GetMapping("/{id}")
     public UserInstanceDto getUser(@PathVariable Long id) {

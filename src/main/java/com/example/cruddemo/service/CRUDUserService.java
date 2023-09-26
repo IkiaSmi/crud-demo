@@ -1,8 +1,6 @@
 package com.example.cruddemo.service;
 
-import com.example.cruddemo.dto.PagedListDto;
-import com.example.cruddemo.dto.UserCreateUpdateDto;
-import com.example.cruddemo.dto.UserInstanceDto;
+import com.example.cruddemo.dto.*;
 import com.example.cruddemo.entity.UserEntity;
 import com.example.cruddemo.repository.UserRepository;
 import jakarta.transaction.Transactional;
@@ -30,6 +28,16 @@ public class CRUDUserService {
         entityForUpdate.setName(dto.name());
         var updatedEntity = repository.save(entityForUpdate);
         return UserInstanceDto.ofEntity(updatedEntity);
+    }
+
+    public StringDto delete(UserIdDto dto) {
+        try {
+            repository.deleteById(dto.id());
+            return new StringDto("True");
+        } catch (Exception e) {
+            return new StringDto("False");
+        }
+
     }
 
     @Transactional
