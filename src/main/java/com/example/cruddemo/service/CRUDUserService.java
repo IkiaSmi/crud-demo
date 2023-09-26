@@ -30,12 +30,14 @@ public class CRUDUserService {
         return UserInstanceDto.ofEntity(updatedEntity);
     }
 
-    public StringDto delete(UserIdDto dto) {
+    public void delete(long id) {
         try {
-            repository.deleteById(dto.id());
-            return new StringDto("True");
+            repository.deleteById(id);
         } catch (Exception e) {
-            return new StringDto("False");
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND,
+                    String.format(e.getMessage())
+            );
         }
 
     }

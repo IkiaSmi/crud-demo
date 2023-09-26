@@ -22,8 +22,8 @@ public class CRUDUserController {
         return service.update(dto);
     }
 
-    @PostMapping("/delateUser")
-    public StringDto deleteUser(@RequestBody UserIdDto dto){ return service.delete(dto); }
+    @DeleteMapping("/{id}")
+    public void deleteUser(@PathVariable Long id){ service.delete(id); }
 
     @GetMapping("/{id}")
     public UserInstanceDto getUser(@PathVariable Long id) {
